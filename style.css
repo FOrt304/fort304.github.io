@@ -1,0 +1,341 @@
+/* =========================
+   General
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    color: #eaf2ff;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #172d5c 0%,
+            #0b1735 35%,
+            #050b1c 100%
+        );
+
+    overflow-x: hidden;
+}
+
+
+/* =========================
+   Background
+   ========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(80, 150, 255, 0.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(80, 200, 255, 0.08),
+            transparent 30%
+        );
+
+    z-index: -1;
+}
+
+
+/* =========================
+   Profile container
+   ========================= */
+
+.profile {
+    width: min(650px, calc(100% - 32px));
+
+    margin: 70px auto;
+
+    padding: 35px;
+
+    text-align: center;
+
+    background: rgba(8, 20, 45, 0.72);
+
+    border: 1px solid rgba(120, 180, 255, 0.18);
+
+    border-radius: 28px;
+
+    box-shadow:
+        0 20px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+
+    backdrop-filter: blur(18px);
+}
+
+
+/* =========================
+   Avatar
+   ========================= */
+
+.avatar {
+    width: 140px;
+    height: 140px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 4px solid #70b7ff;
+
+    box-shadow:
+        0 0 25px rgba(80, 170, 255, 0.45);
+
+    transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+    transform: scale(1.06) rotate(2deg);
+}
+
+
+/* =========================
+   Name
+   ========================= */
+
+h1 {
+    margin: 20px 0 4px;
+
+    font-size: 36px;
+
+    letter-spacing: -1px;
+}
+
+h1 span {
+    color: #76c7ff;
+}
+
+.username {
+    margin: 0;
+
+    color: #8da6c9;
+
+    font-size: 15px;
+}
+
+
+/* =========================
+   Bio
+   ========================= */
+
+.bio {
+    margin: 25px auto;
+
+    line-height: 1.7;
+
+    color: #cbd9ef;
+}
+
+
+/* =========================
+   Tags
+   ========================= */
+
+.tags {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 22px 0;
+}
+
+.tags span {
+    padding: 7px 13px;
+
+    border-radius: 999px;
+
+    background: rgba(80, 150, 255, 0.1);
+
+    border: 1px solid rgba(100, 180, 255, 0.15);
+
+    color: #a9d5ff;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Links
+   ========================= */
+
+.links {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin-top: 25px;
+}
+
+.links a {
+    display: grid;
+
+    grid-template-columns: 35px 1fr 35px;
+
+    align-items: center;
+
+    padding: 15px 18px;
+
+    color: #eaf3ff;
+
+    text-decoration: none;
+
+    background: rgba(30, 65, 120, 0.35);
+
+    border: 1px solid rgba(110, 180, 255, 0.12);
+
+    border-radius: 15px;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.links a:hover {
+    transform: translateY(-3px);
+
+    background: rgba(50, 100, 180, 0.42);
+
+    border-color: rgba(120, 190, 255, 0.35);
+}
+
+.icon {
+    text-align: left;
+}
+
+.arrow {
+    text-align: right;
+
+    color: #79bfff;
+}
+
+
+/* =========================
+   Sections
+   ========================= */
+
+.about,
+.currently {
+    margin-top: 35px;
+
+    padding: 22px;
+
+    text-align: left;
+
+    background: rgba(20, 45, 85, 0.3);
+
+    border-radius: 18px;
+
+    border: 1px solid rgba(100, 170, 255, 0.1);
+}
+
+h2 {
+    margin-top: 0;
+
+    font-size: 20px;
+
+    color: #8dccff;
+}
+
+.about p {
+    line-height: 1.7;
+
+    color: #bdcce2;
+}
+
+
+/* =========================
+   Status
+   ========================= */
+
+.status {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #cbd9ef;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #55e68a;
+
+    box-shadow: 0 0 12px #55e68a;
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+    margin-top: 35px;
+
+    color: #7186a8;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .profile {
+        margin: 20px auto;
+
+        padding: 25px 18px;
+
+        border-radius: 22px;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    .avatar {
+        width: 115px;
+        height: 115px;
+    }
+}
