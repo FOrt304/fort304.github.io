@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="sv">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Webbutveckling | Alla lektioner</title>
+	<link rel="icon" type="image/jpeg" href="Lektion5/Test/cat.jpg">
+	<meta name="description" content="Alla lektioner och filer i Alexander Lundbergs webbutvecklingsprojekt. Senast uppdaterad: 17 september 2026.">
+	<meta property="article:modified_time" content="2026-09-17T00:00:00+02:00">
+	<meta property="og:updated_time" content="2026-09-17T00:00:00+02:00">
+	<meta name="theme-color" content="#17212B">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://fort304.github.io/Webbutveckling/">
+	<meta property="og:image" content="https://fort304.github.io/Webbutveckling/Lektion4/cat-1279.jpg">
+	<meta property="og:image:type" content="image/jpeg">
+	<meta property="og:image:width" content="1279">
+	<meta property="og:image:height" content="723">
+	<meta property="og:image:alt" content="Ringlos Katt">
+	<meta property="og:title" content="Webbutveckling | Alla lektioner">
+	<meta property="og:description" content="Alla lektioner och filer i Alexander Lundbergs webbutvecklingsprojekt. Senast uppdaterad: 17 september 2026.">
+	<meta name="twitter:card" content="summary_large_image">
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #17212b;
+			--muted: #5c6b78;
+			--paper: #f7f4ee;
+			--panel: #ffffff;
+			--line: #ded8cd;
+			--accent: #c64b36;
+			--accent-dark: #8e3023;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--paper);
+			font-family: Georgia, "Times New Roman", serif;
+			line-height: 1.5;
+		}
+
+		header {
+			padding: 4rem 1.5rem 3rem;
+			background: var(--ink);
+			color: #fffaf2;
+		}
+
+		header div, main { max-width: 980px; margin: 0 auto; }
+
+		.eyebrow {
+			margin: 0 0 .5rem;
+			color: #f2a18e;
+			font: 700 .78rem/1.2 Arial, sans-serif;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+
+		h1, h2, p { margin-top: 0; }
+		h1 { max-width: 700px; margin-bottom: .75rem; font-size: clamp(2.5rem, 7vw, 5.5rem); line-height: .95; }
+		header p { max-width: 580px; margin-bottom: 0; color: #d9e0e3; font-size: 1.1rem; }
+
+		main { padding: 2rem 1.5rem 4rem; }
+
+		.intro {
+			margin-bottom: 1.5rem;
+			color: var(--muted);
+			font-size: 1.05rem;
+		}
+
+		.lessons {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+			gap: 1rem;
+		}
+
+		section {
+			padding: 1.35rem;
+			background: var(--panel);
+			border: 1px solid var(--line);
+			border-top: 5px solid var(--accent);
+		}
+
+		h2 { margin-bottom: .15rem; font-size: 1.45rem; }
+		.folder { margin-bottom: 1rem; color: var(--muted); font: .82rem/1.3 Consolas, monospace; }
+
+		ul { margin: 0; padding: 0; list-style: none; }
+		li + li { margin-top: .55rem; }
+
+		a {
+			color: var(--accent-dark);
+			font-weight: 700;
+			text-decoration-thickness: 1px;
+			text-underline-offset: 3px;
+		}
+
+		a:hover, a:focus { color: var(--accent); }
+		.file-type { color: var(--muted); font: .78rem Arial, sans-serif; }
+
+		footer {
+			max-width: 980px;
+			margin: 0 auto;
+			padding: 0 1.5rem 2rem;
+			color: var(--muted);
+			font: .85rem Arial, sans-serif;
+		}
+
+		.footer-meta {
+			display: flex;
+			align-items: center;
+			gap: .65rem;
+			flex-wrap: wrap;
+		}
+
+		.footer-copy {
+			display: flex;
+			flex-direction: column;
+			gap: .15rem;
+		}
+
+		.views {
+			display: inline-flex;
+			align-items: center;
+			gap: .45rem;
+			padding: .25rem .55rem;
+			border: 1px solid var(--line);
+			border-radius: 999px;
+			background: #fff;
+			color: var(--ink);
+			font-weight: 700;
+		}
+
+		.eye {
+			font-size: 1rem;
+			line-height: 1;
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div>
+			<p class="eyebrow">Webbutveckling</p>
+			<h1>Alla lektioner på ett ställe.</h1>
+			<p>En samlad startsida för projektets HTML-sidor, bilder, ljud och video.</p>
+		</div>
+	</header>
+
+	<main>
+		<p class="intro">Välj en mapp och öppna en fil. Alla länkar använder relativa sökvägar, så sidan fungerar både lokalt och på GitHub Pages.</p>
+
+		<div class="lessons">
+			<section>
+				<h2>Lektion 1</h2>
+				<p class="folder">Lektion1/</p>
+				<ul>
+					<li><a href="Lektion1/Skelett_hemsidan.html">Skelett-hemsidan</a> <span class="file-type">HTML</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lektion 2</h2>
+				<p class="folder">Lektion2/</p>
+				<ul>
+					<li><a href="Lektion2/grundstruktur.html">Grundstruktur</a> <span class="file-type">HTML</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lektion 3</h2>
+				<p class="folder">Lektion3/Programmeringsövning_länkar/</p>
+				<ul>
+					<li><a href="Lektion3/Programmerings%C3%B6vning_l%C3%A4nkar/index.html">Programmeringsövning</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion3/Programmerings%C3%B6vning_l%C3%A4nkar/f%C3%B6rfattare.html">Författare</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion3/Programmerings%C3%B6vning_l%C3%A4nkar/Olika%20spr%C3%A5k/spr%C3%A5k.html">Olika språk</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion3/Programmerings%C3%B6vning_l%C3%A4nkar/Olika%20spr%C3%A5k/lisps-pr%C3%A5k/lisp-spr%C3%A5k.html">Lisp-språk</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion3/Programmerings%C3%B6vning_l%C3%A4nkar/Olika%20spr%C3%A5k/icke-lisp/icke-lisp.html">Icke-Lisp</a> <span class="file-type">HTML</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lektion 4</h2>
+				<p class="folder">Lektion4/</p>
+				<ul>
+					<li><a href="Lektion4/responsivabilder.html">Responsiva bilder</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion4/cat-1279.jpg">Cat 1279</a> <span class="file-type">JPG</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lektion 5</h2>
+				<p class="folder">Lektion5/ och Lektion5/Test/</p>
+				<ul>
+					<li><a href="Lektion5/form.html">Formulär</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion5/Test/index.html">Test: startsida</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion5/Test/form.html">Test: formulär</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion5/Test/hallo.html">Test: hallo</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion5/Test/main.css">Test: stylesheet</a> <span class="file-type">CSS</span></li>
+					<li><a href="Lektion5/Test/cat.jpg">Test: cat</a> <span class="file-type">JPG</span></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Lektion 6</h2>
+				<p class="folder">Lektion6/, Lektion6/Ljud och Lektion6/Video</p>
+				<ul>
+					<li><a href="Lektion6/multimedia.html">Multimedia</a> <span class="file-type">HTML</span></li>
+					<li><a href="Lektion6/Ljud/Jatter_Oger.mp3">Ljud: Jätter Oger</a> <span class="file-type">MP3</span></li>
+					<li><a href="Lektion6/Ljud/Jatter_Oger.ogg">Ljud: Jätter Oger</a> <span class="file-type">OGG</span></li>
+					<li><a href="Lektion6/Video/content_warning(15).mp4">Video: Content warning</a> <span class="file-type">MP4</span></li>
+					<li><a href="Lektion6/Video/content_warning(15).webm">Video: Content warning</a> <span class="file-type">WEBM</span></li>
+				</ul>
+			</section>
+		</div>
+	</main>
+
+	<footer>
+		<div class="footer-meta">
+			<span class="views" aria-label="Antal aktiva visningar">
+				<span class="eye" aria-hidden="true">👁</span>
+				<span id="view-count">1</span>
+			</span>
+			<div class="footer-copy">
+				<span>Webbutveckling · @FOrt404 · GitHub Pages</span>
+				<span id="last-updated">Senast uppdaterad: --</span>
+			</div>
+		</div>
+	</footer>
+
+	<script type="module">
+		import { initializeApp } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js';
+		import { getAuth, signInAnonymously } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js';
+		import { getDatabase, onDisconnect, onValue, ref, remove, set } from 'https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js';
+
+		const firebaseConfig = {
+			apiKey: 'AIzaSyDN80yxHiKPTcTr_3o5HrjMdKGqJ9sFVYU',
+			authDomain: 'webbutveckling-fort404.firebaseapp.com',
+			databaseURL: 'https://webbutveckling-fort404-default-rtdb.europe-west1.firebasedatabase.app/',
+			projectId: 'webbutveckling-fort404',
+			storageBucket: 'webbutveckling-fort404.firebasestorage.app',
+			messagingSenderId: '285209919641',
+			appId: '1:285209919641:web:c475560e54281921153808',
+			measurementId: 'G-M80EG64CP5'
+		};
+
+		(function () {
+			const countEl = document.getElementById('view-count');
+			const updatedEl = document.getElementById('last-updated');
+			const metaDescription = document.querySelector('meta[name="description"]');
+			const ogDescription = document.querySelector('meta[property="og:description"]');
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
+			const database = getDatabase(app);
+
+			signInAnonymously(auth).then(function (userCredential) {
+				const presenceRef = ref(database, 'activeViews/' + userCredential.user.uid + '_' + crypto.randomUUID());
+				return onDisconnect(presenceRef).remove().then(function () {
+					return set(presenceRef, true);
+				}).then(function () {
+					onValue(ref(database, 'activeViews'), function (snapshot) {
+						if (countEl) countEl.textContent = (snapshot.size || 0).toLocaleString('sv-SE');
+					});
+					window.addEventListener('beforeunload', function () {
+						remove(presenceRef);
+					});
+				});
+			}).catch(function (error) {
+				console.error('Firebase active view counter failed:', error);
+				if (countEl) countEl.textContent = '1';
+			});
+
+			if (updatedEl) {
+				const now = new Date();
+				const formatted = new Intl.DateTimeFormat('sv-SE', {
+					day: 'numeric',
+					month: 'long',
+					year: 'numeric',
+					hour: '2-digit',
+					minute: '2-digit'
+				}).format(now);
+				updatedEl.textContent = 'Senast uppdaterad: ' + formatted;
+				const summaryText = 'Alla lektioner och filer i Alexander Lundbergs webbutvecklingsprojekt. Senast uppdaterad: ' + formatted + '.';
+				if (metaDescription) metaDescription.setAttribute('content', summaryText);
+				if (ogDescription) ogDescription.setAttribute('content', summaryText);
+			}
+		})();
+	</script>
+</body>
+</html>

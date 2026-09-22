@@ -8,11 +8,14 @@
 
 html {
     scroll-behavior: smooth;
+
+    background-color: #050b1c;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
+    min-height: 100dvh;
 
     font-family:
         Inter,
@@ -32,7 +35,10 @@ body {
             #050b1c 100%
         );
 
+    background-color: #050b1c;
+
     overflow-x: hidden;
+    overscroll-behavior-y: none;
 }
 
 
