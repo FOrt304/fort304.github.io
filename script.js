@@ -3,6 +3,137 @@ const year = document.getElementById("year");
 
 year.textContent = `© ${new Date().getFullYear()} • Made with 💙 by FOrt404. • All rights reserved.`;
 
+const musicToggle = document.getElementById("music-toggle");
+const musicControl = document.getElementById("music-control");
+const musicVolume = document.getElementById("music-volume");
+const musicTrack = document.getElementById("music-track");
+const musicTrackName = document.getElementById("music-track-name");
+const backgroundMusic = new Audio();
+const musicManifestPath = "music/playlist.json";
+backgroundMusic.volume = Number(musicVolume.value);
+let lastMusicVolume = backgroundMusic.volume;
+const minimumUnmutedVolume = 0.15;
+let musicQueue = [];
+let musicQueueIndex = 0;
+let musicStarted = false;
+let musicMuted = false;
+
+function shuffleMusicQueue(tracks) {
+    const shuffledTracks = [...tracks];
+
+    for (let index = shuffledTracks.length - 1; index > 0; index -= 1) {
+        const randomIndex = Math.floor(Math.random() * (index + 1));
+        [shuffledTracks[index], shuffledTracks[randomIndex]] = [
+            shuffledTracks[randomIndex],
+            shuffledTracks[index]
+        ];
+    }
+
+    return shuffledTracks;
+}
+
+function updateMusicToggle() {
+    musicToggle.setAttribute("aria-label", musicMuted ? "Turn background music on" : "Mute background music");
+    musicToggle.setAttribute("aria-pressed", String(musicMuted));
+    musicControl.classList.toggle("is-muted", musicMuted);
+    musicVolume.value = String(backgroundMusic.volume);
+    musicVolume.style.setProperty("--volume-level", `${backgroundMusic.volume * 100}%`);
+}
+
+function playNextTrack() {
+    if (!musicQueue.length) {
+        return;
+    }
+
+    if (musicQueueIndex >= musicQueue.length) {
+        musicQueue = shuffleMusicQueue(musicQueue);
+        musicQueueIndex = 0;
+    }
+
+    const nextTrack = musicQueue[musicQueueIndex];
+    const trackName = decodeURIComponent(nextTrack.split("/").pop())
+        .replace(/\.[^/.]+$/, "")
+        .replace(/[-_]+/g, " ");
+
+    backgroundMusic.src = nextTrack;
+    musicQueueIndex += 1;
+    musicTrackName.textContent = trackName;
+    musicTrack.hidden = false;
+    backgroundMusic.play().then(() => {
+        musicStarted = true;
+        window.removeEventListener("pointerdown", startMusicAfterInteraction);
+        updateMusicToggle();
+    }).catch(() => {
+    });
+}
+
+async function setupBackgroundMusic() {
+    try {
+        const response = await fetch(musicManifestPath);
+        const tracks = await response.json();
+
+        if (!Array.isArray(tracks) || !tracks.length) {
+            return;
+        }
+
+        musicQueue = shuffleMusicQueue(tracks.map((track) => {
+            const normalizedTrack = track.replace(/^\/+/, "");
+            return normalizedTrack.startsWith("music/") ?
+                normalizedTrack : `music/${normalizedTrack}`;
+        }));
+        musicControl.hidden = false;
+        backgroundMusic.addEventListener("ended", playNextTrack);
+        playNextTrack();
+    } catch (error) {
+        console.warn("Background music unavailable:", error);
+    }
+}
+
+musicToggle.addEventListener("click", () => {
+    musicMuted = !musicMuted;
+
+    if (!musicMuted) {
+        backgroundMusic.volume = Math.max(lastMusicVolume, minimumUnmutedVolume);
+        backgroundMusic.muted = false;
+    } else {
+        lastMusicVolume = backgroundMusic.volume;
+        backgroundMusic.volume = 0;
+        backgroundMusic.muted = true;
+    }
+
+    if (!musicStarted) {
+        playNextTrack();
+    }
+
+    updateMusicToggle();
+});
+
+musicVolume.addEventListener("input", () => {
+    backgroundMusic.volume = Number(musicVolume.value);
+    musicVolume.style.setProperty("--volume-level", `${backgroundMusic.volume * 100}%`);
+
+    if (backgroundMusic.volume > 0) {
+        lastMusicVolume = backgroundMusic.volume;
+        musicMuted = false;
+        backgroundMusic.muted = false;
+    } else {
+        musicMuted = true;
+        backgroundMusic.muted = true;
+    }
+
+    updateMusicToggle();
+});
+
+function startMusicAfterInteraction() {
+    if (!musicStarted && musicQueue.length) {
+        playNextTrack();
+    }
+}
+
+window.addEventListener("pointerdown", startMusicAfterInteraction);
+
+setupBackgroundMusic();
+
 // Configure your Discord user ID here to enable the live presence widget.
 const DISCORD_USER_ID = "541605282942418964";
 const statusText = document.getElementById("status-text");
@@ -124,6 +255,46 @@ localStorage.setItem(previousBackgroundKey, randomBackground);
 window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 });
+
+
+// Add a light snowfall and a quiet field of stars across the whole viewport.
+const starLayer = document.querySelector(".star-layer");
+const snowLayer = document.querySelector(".snow-layer");
+
+function createSkyEffects() {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const starCount = prefersReducedMotion ? 30 : 70;
+    const snowflakeCount = prefersReducedMotion ? 0 : 34;
+
+    for (let index = 0; index < starCount; index += 1) {
+        const star = document.createElement("span");
+        star.className = "star";
+        star.style.setProperty("--star-x", `${Math.random() * 100}%`);
+        star.style.setProperty("--star-y", `${Math.random() * 100}%`);
+        star.style.setProperty("--star-size", `${1 + Math.random() * 2.5}px`);
+        const starOpacity = 0.35 + Math.random() * 0.6;
+        star.style.setProperty("--star-opacity", `${starOpacity}`);
+        star.style.setProperty("--star-dim-opacity", `${starOpacity * 0.45}`);
+        star.style.setProperty("--star-duration", `${2.5 + Math.random() * 4}s`);
+        star.style.animationDelay = `${Math.random() * -4}s`;
+        starLayer.appendChild(star);
+    }
+
+    for (let index = 0; index < snowflakeCount; index += 1) {
+        const snowflake = document.createElement("span");
+        snowflake.className = "snowflake";
+        snowflake.textContent = Math.random() > 0.45 ? "❄" : "✦";
+        snowflake.style.setProperty("--snow-x", `${Math.random() * 100}%`);
+        snowflake.style.setProperty("--snow-size", `${10 + Math.random() * 14}px`);
+        snowflake.style.setProperty("--snow-opacity", `${0.3 + Math.random() * 0.5}`);
+        snowflake.style.setProperty("--snow-duration", `${12 + Math.random() * 16}s`);
+        snowflake.style.setProperty("--snow-delay", `${Math.random() * -24}s`);
+        snowflake.style.setProperty("--snow-drift", `${-80 + Math.random() * 160}px`);
+        snowLayer.appendChild(snowflake);
+    }
+}
+
+createSkyEffects();
 
 
 // Make tags and links tilt toward the cursor.

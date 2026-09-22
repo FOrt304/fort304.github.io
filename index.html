@@ -27,6 +27,30 @@
 <body>
 
     <div class="background"></div>
+    <div class="sky-effects" aria-hidden="true">
+        <div class="star-layer"></div>
+        <div class="snow-layer"></div>
+    </div>
+
+    <div class="music-control" id="music-control" hidden>
+        <button class="music-toggle" id="music-toggle" type="button" aria-label="Turn background music on" aria-pressed="false">
+            <svg class="music-icon" id="music-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 18V5l10-2v13M9 8l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm10-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+            </svg>
+            <svg class="music-icon music-icon-muted" id="music-muted-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M9 18V5l10-2v13M9 8l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm10-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 3l18 18" />
+            </svg>
+        </button>
+        <label class="music-volume" for="music-volume">
+            <span class="sr-only">Background music volume</span>
+            <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Background music volume">
+        </label>
+    </div>
+
+    <div class="music-track" id="music-track" aria-live="polite" hidden>
+        <span class="music-track-label">Now playing:</span>
+        <span id="music-track-name"></span>
+    </div>
 
     <main class="profile">
 
