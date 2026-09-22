@@ -254,6 +254,9 @@ h1 span {
 }
 
 .icon {
+    width: 22px;
+    height: 22px;
+
     text-align: left;
 }
 
