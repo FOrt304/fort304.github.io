@@ -9,6 +9,16 @@
 html {
     scroll-behavior: smooth;
 
+    min-height: 100%;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #172d5c 0%,
+            #0b1735 35%,
+            #050b1c 100%
+        );
+
     background-color: #050b1c;
 }
 
@@ -64,7 +74,11 @@ body {
             transparent 30%
         );
 
-    z-index: -1;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    z-index: 0;
 }
 
 
@@ -73,6 +87,9 @@ body {
    ========================= */
 
 .profile {
+    position: relative;
+    z-index: 1;
+
     width: min(650px, calc(100% - 32px));
 
     margin: 70px auto;
