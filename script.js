@@ -127,7 +127,7 @@ window.addEventListener("load", () => {
 
 
 // Make tags and links tilt toward the cursor.
-document.querySelectorAll(".tags span, .links a, .status").forEach((element) => {
+document.querySelectorAll(".tags span, .links a, .status, .profile-flags a, .footer-contact").forEach((element) => {
     element.addEventListener("pointermove", (event) => {
         const bounds = element.getBoundingClientRect();
         const x = (event.clientX - bounds.left) / bounds.width - 0.5;
@@ -153,20 +153,31 @@ document.querySelectorAll(".tags span, .links a, .status").forEach((element) => 
 
 
 // Run name particles continuously and make avatar particles more frequent on hover.
-document.querySelectorAll(".avatar-target, .name-target").forEach((target) => {
+document.querySelectorAll(".avatar-target, .name-target, .flag-target").forEach((target) => {
     const particleLayer = target.querySelector(".particle-layer");
     const isAvatar = target.classList.contains("avatar-target");
+    const particlePalettes = target.classList.contains("flag-sweden-target") ?
+        ["#f6d34a", "#2363a5"] :
+        target.classList.contains("flag-pan-target") ?
+            ["#f5a9b8", "#f5e65c", "#58c7e8"] :
+            ["#79c8ff"];
     let particleTimer;
 
     function createParticle() {
         const particle = document.createElement("span");
-        const isFace = Math.random() < 0.35;
+        const particleType = Math.random();
+        const particleColor = particlePalettes[
+            Math.floor(Math.random() * particlePalettes.length)
+        ];
 
         particle.className = "particle";
-        particle.textContent = isFace ? ":3" : "✦";
+        particle.textContent = particleType < 0.3 ? ":3" :
+            particleType < 0.6 ? "♥" : "✦";
+        particle.style.setProperty("--particle-color", particleColor);
+        particle.style.setProperty("--particle-shadow", `${particleColor}d9`);
         particle.style.setProperty("--particle-x", `${15 + Math.random() * 70}%`);
         particle.style.setProperty("--particle-y", `${15 + Math.random() * 70}%`);
-        particle.style.setProperty("--particle-size", `${isFace ? 11 : 10 + Math.random() * 8}px`);
+        particle.style.setProperty("--particle-size", `${particleType < 0.3 ? 11 : 10 + Math.random() * 8}px`);
         particle.style.setProperty("--particle-drift-x", `${-18 + Math.random() * 36}px`);
         particle.style.setProperty("--particle-drift-y", `${-28 - Math.random() * 20}px`);
         particle.style.setProperty("--particle-rotation", `${-25 + Math.random() * 50}deg`);
@@ -193,7 +204,7 @@ document.querySelectorAll(".avatar-target, .name-target").forEach((target) => {
         target.style.setProperty("--name-rotate-x", `${y * -5}deg`);
     });
 
-    if (isAvatar) {
+    if (isAvatar || target.classList.contains("flag-target")) {
         target.addEventListener("pointerenter", () => {
             createParticle();
             scheduleParticle();

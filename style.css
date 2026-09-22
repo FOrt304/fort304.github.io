@@ -28,6 +28,9 @@ html {
 
     min-height: 100%;
 
+    scrollbar-color: #4b9fe8 #07132d;
+    scrollbar-width: thin;
+
     background:
         radial-gradient(
             circle at top,
@@ -37,6 +40,24 @@ html {
         );
 
     background-color: #050b1c;
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+}
+
+::-webkit-scrollbar-track {
+    background: #07132d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #79c8ff, #3476c5);
+    border: 3px solid #07132d;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #a9ddff, #4b9fe8);
 }
 
 body {
@@ -120,6 +141,79 @@ body {
         inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
     backdrop-filter: blur(18px);
+}
+
+
+/* =========================
+   Profile flags
+   ========================= */
+
+.profile-flags {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+
+    display: flex;
+    gap: 7px;
+}
+
+.profile-flags a {
+    position: relative;
+
+    --link-rotate-x: 0deg;
+    --link-rotate-y: 0deg;
+    --link-lift: 0px;
+
+    display: block;
+
+    padding: 3px;
+
+    border: 1px solid rgba(150, 205, 255, 0.35);
+    border-radius: 5px;
+
+    background: rgba(12, 30, 65, 0.65);
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.profile-flags a:hover {
+    transform:
+        perspective(420px)
+        rotateX(var(--link-rotate-x))
+        rotateY(var(--link-rotate-y))
+        translateY(var(--link-lift));
+
+    border-color: rgba(170, 220, 255, 0.85);
+    background: rgba(45, 95, 165, 0.5);
+}
+
+.flag {
+    display: block;
+
+    width: 30px;
+    height: 20px;
+
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+}
+
+.flag-sweden {
+    background:
+        linear-gradient(90deg, transparent 0 35%, #f6d34a 35% 47%, transparent 47%),
+        linear-gradient(0deg, transparent 0 40%, #f6d34a 40% 60%, transparent 60%),
+        #2363a5;
+}
+
+.flag-pan {
+    background: linear-gradient(
+        180deg,
+        #f5a9b8 0 33.33%,
+        #f5e65c 33.33% 66.66%,
+        #58c7e8 66.66% 100%
+    );
 }
 
 
@@ -222,12 +316,12 @@ h1 {
     left: var(--particle-x);
     top: var(--particle-y);
 
-    color: #79c8ff;
+    color: var(--particle-color, #79c8ff);
     font-family: "Renogare", sans-serif;
     font-size: var(--particle-size);
     font-weight: 400;
     line-height: 1;
-    text-shadow: 0 0 10px rgba(80, 180, 255, 0.85);
+    text-shadow: 0 0 10px var(--particle-shadow, rgba(80, 180, 255, 0.85));
 
     animation: particle-float 1.2s ease-out forwards;
 }
@@ -257,6 +351,15 @@ h1 span {
 
 .username {
     margin: 0;
+
+    font-family: "Renogare", sans-serif;
+    color: #8da6c9;
+
+    font-size: 15px;
+}
+
+.pronouns {
+    margin: 4px 0 0;
 
     font-family: "Renogare", sans-serif;
     color: #8da6c9;
@@ -435,6 +538,12 @@ h2 {
     color: #bdcce2;
 }
 
+.about ul {
+    line-height: 1.7;
+
+    color: #bdcce2;
+}
+
 
 /* =========================
    Status
@@ -596,6 +705,51 @@ footer {
     font-size: 13px;
 
     line-height: 1.7;
+}
+
+.footer-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    margin-top: 12px;
+    padding: 8px 14px;
+
+    color: #b9dcff;
+    text-decoration: none;
+
+    border: 1px solid rgba(120, 180, 255, 0.28);
+    border-radius: 999px;
+    background: rgba(35, 78, 135, 0.28);
+
+    transition:
+        color 0.2s ease,
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.footer-contact:hover,
+.footer-contact:focus-visible {
+    color: #ffffff;
+    border-color: rgba(145, 210, 255, 0.8);
+    background: rgba(55, 117, 190, 0.42);
+    transform:
+        perspective(420px)
+        rotateX(var(--link-rotate-x))
+        rotateY(var(--link-rotate-y))
+        translateY(var(--link-lift));
+}
+
+.footer-contact-icon {
+    width: 17px;
+    height: 17px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
 }
 
 
