@@ -16,7 +16,6 @@
 	<meta property="og:type" content="website">
 	<meta property="og:url" content="https://fort304.github.io">
 	<meta property="og:image" content="https://fort304.github.io/images/uwu.png">
-	<meta property="og:image:alt" content="FOrt's profile picture">
 	<meta property="og:title" content="FOrt's Profile :3">
 	<meta property="og:description" content="Hi!! I'm FOrt :3">
 	<meta name="twitter:card" content="summary_large_image">
@@ -32,27 +31,32 @@
     <main class="profile">
 
         <!-- Profile picture -->
-        <img
-            class="avatar"
-            src="/images/uwu.png"
-            alt="FOrt's profile picture"
-        >
+        <div class="effect-target avatar-target">
+            <img
+                class="avatar"
+                src="/images/uwu.png"
+                alt="FOrt's profile picture"
+            >
+            <span class="particle-layer" aria-hidden="true"></span>
+        </div>
 
-        <h1>FOrt <span>^w^</span></h1>
+        <div class="effect-target name-target">
+            <h1>FOrt <span>^w^</span></h1>
+            <span class="particle-layer" aria-hidden="true"></span>
+        </div>
 
         <p class="username">@fort404</p>
 
         <p class="bio">
             Haiii! I'm FOrt :3<br>
-            Cat boy • soft • introvert<br>
             I like Roblox, Minecraft, music & silly things :D
         </p>
 
         <!-- Tags -->
         <div class="tags">
             <span>🐱 Catboy</span>
-            <span>💙 Blue</span>
-            <span>🎮 Gamer</span>
+            <span>💙 Soft</span>
+            <span>🎮 Introvert</span>
             <span>✨ Silly</span>
         </div>
 
@@ -60,26 +64,26 @@
         <div class="links">
 
             <a href="https://roblox.com/" target="_blank">
-                <img class="icon" src="https://cdn.simpleicons.org/roblox/eaf3ff" alt="" aria-hidden="true">
-                <span>Roblox</span>
+                <img class="icon" src="https://cdn.simpleicons.org/roblox/000000" alt="" aria-hidden="true">
+                <span><b>Roblox</b></span>
                 <span class="arrow">↗</span>
             </a>
 
             <a href="https://github.com/" target="_blank">
-                <img class="icon" src="https://cdn.simpleicons.org/github/eaf3ff" alt="" aria-hidden="true">
-                <span>GitHub</span>
+                <img class="icon" src="https://cdn.simpleicons.org/github/181717" alt="" aria-hidden="true">
+                <span><b>GitHub</b></span>
                 <span class="arrow">↗</span>
             </a>
 
             <a href="https://discord.com/" target="_blank">
-                <img class="icon" src="https://cdn.simpleicons.org/discord/eaf3ff" alt="" aria-hidden="true">
-                <span>Discord</span>
+                <img class="icon" src="https://cdn.simpleicons.org/discord/5865F2" alt="" aria-hidden="true">
+                <span><b>Discord</b></span>
                 <span class="arrow">↗</span>
             </a>
 
             <a href="https://www.youtube.com/" target="_blank">
-                <img class="icon" src="https://cdn.simpleicons.org/youtube/eaf3ff" alt="" aria-hidden="true">
-                <span>YouTube</span>
+                <img class="icon" src="https://cdn.simpleicons.org/youtube/FF0000" alt="" aria-hidden="true">
+                <span><b>YouTube</b></span>
                 <span class="arrow">↗</span>
             </a>
 
@@ -106,18 +110,28 @@
         <!-- Currently -->
         <section class="currently">
 
-            <h2>Currently</h2>
+            <h2>Status</h2>
 
-            <div class="status">
-                <span class="status-dot"></span>
-                <span>probably playing Roblox :3</span>
-            </div>
+            <a
+                class="status-link"
+                id="status-link"
+                href="https://discord.com/"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Open Discord profile"
+            >
+                <div class="status" aria-live="polite">
+                    <span class="status-dot" id="status-dot"></span>
+                    <div class="status-details">
+                        <span class="status-label">Discord</span>
+                        <span id="status-text">Loading status...</span>
+                    </div>
+                </div>
+            </a>
 
         </section>
 
         <footer>
-            made with 💙 by FOrt404
-            <br>
             <span id="year"></span>
         </footer>
 
