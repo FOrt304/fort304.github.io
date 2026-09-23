@@ -343,7 +343,7 @@ document.querySelectorAll(".avatar-target, .name-target, .flag-target").forEach(
 
         particle.className = "particle";
         particle.textContent = particleType < 0.3 ? ":3" :
-            particleType < 0.6 ? "♥" : "✦";
+            particleType < 0.6 ? "♡" : "✦";
         particle.style.setProperty("--particle-color", particleColor);
         particle.style.setProperty("--particle-shadow", `${particleColor}d9`);
         particle.style.setProperty("--particle-x", `${15 + Math.random() * 70}%`);

@@ -246,6 +246,7 @@ body {
 
 .music-volume {
     display: grid;
+    gap: 6px;
     width: 0;
     overflow: hidden;
     opacity: 0;
@@ -254,7 +255,7 @@ body {
 
 .music-control:hover .music-volume,
 .music-control:focus-within .music-volume {
-    width: 112px;
+    width: max-content;
     opacity: 1;
 }
 
@@ -304,18 +305,13 @@ body {
 }
 
 .music-track {
-    position: fixed;
-    left: 18px;
-    bottom: 18px;
-    z-index: 3;
-
-    max-width: min(360px, calc(100vw - 36px));
+    max-width: none;
     overflow: hidden;
 
     color: #eaf2ff;
     font-size: 0.86rem;
     line-height: 1.35;
-    text-overflow: ellipsis;
+    text-overflow: clip;
     white-space: nowrap;
     text-shadow: 0 0 10px rgba(121, 200, 255, 0.7);
 }
@@ -588,9 +584,11 @@ h1 span {
 
 .username {
     margin: 0;
+    display: inline-block;
 
     font-family: "Renogare", sans-serif;
     color: #8da6c9;
+    text-decoration: none;
 
     font-size: 15px;
 }

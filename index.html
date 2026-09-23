@@ -41,15 +41,16 @@
                 <path d="M9 18V5l10-2v13M9 8l10-2M6 21a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm10-3a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM3 3l18 18" />
             </svg>
         </button>
-        <label class="music-volume" for="music-volume">
-            <span class="sr-only">Background music volume</span>
-            <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Background music volume">
-        </label>
-    </div>
-
-    <div class="music-track" id="music-track" aria-live="polite" hidden>
-        <span class="music-track-label">Now playing:</span>
-        <span id="music-track-name"></span>
+        <div class="music-volume">
+            <div class="music-track" id="music-track" aria-live="polite" hidden>
+                <span class="music-track-label">Now playing:</span>
+                <span id="music-track-name"></span>
+            </div>
+            <label for="music-volume">
+                <span class="sr-only">Background music volume</span>
+                <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.5" aria-label="Background music volume">
+            </label>
+        </div>
     </div>
 
     <main class="profile">
@@ -80,7 +81,7 @@
             <span class="particle-layer" aria-hidden="true"></span>
         </div>
 
-        <p class="username">@fort404</p>
+        <a class="username" href="https://discord.com/users/541605282942418964" target="_blank" rel="noreferrer noopener">@fort404</a>
         <p class="pronouns">He/They</p>
 
         <p class="bio">
