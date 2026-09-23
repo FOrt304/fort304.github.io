@@ -134,6 +134,84 @@ window.addEventListener("pointerdown", startMusicAfterInteraction);
 
 setupBackgroundMusic();
 
+// Keep friendly labels near their controls and show URLs in the browser's usual corner.
+const urlTooltip = document.createElement("div");
+urlTooltip.className = "url-tooltip";
+urlTooltip.setAttribute("role", "status");
+document.body.appendChild(urlTooltip);
+
+document.querySelectorAll("a[href]").forEach((link) => {
+    const href = link.href;
+    const title = link.getAttribute("title");
+
+    link.dataset.href = href;
+    link.removeAttribute("href");
+    link.setAttribute("role", "link");
+    link.tabIndex = 0;
+
+    function activateLink() {
+        if (link.target === "_blank") {
+            window.open(link.dataset.href, "_blank", "noopener,noreferrer");
+        } else {
+            window.location.assign(link.dataset.href);
+        }
+    }
+
+    link.addEventListener("click", (event) => {
+        event.preventDefault();
+        activateLink();
+    });
+
+    link.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            activateLink();
+        }
+    });
+
+    if (title) {
+        link.dataset.tooltip = title;
+        link.removeAttribute("title");
+        return;
+    }
+
+    function showUrlTooltip() {
+        urlTooltip.textContent = link.dataset.href;
+        urlTooltip.classList.add("is-visible");
+    }
+
+    function hideUrlTooltip() {
+        urlTooltip.classList.remove("is-visible");
+    }
+
+    link.addEventListener("pointerenter", showUrlTooltip);
+    link.addEventListener("pointerleave", hideUrlTooltip);
+    link.addEventListener("focus", showUrlTooltip);
+    link.addEventListener("blur", hideUrlTooltip);
+});
+
+const username = document.querySelector(".username");
+const defaultUsernameTooltip = "Copy discord username";
+const copyMessages = [
+    "copied!",
+    "double copy!",
+    "triple copy!",
+    "quadruple copy!",
+    "copied! :3"
+];
+let copyCount = 0;
+
+username.addEventListener("click", async () => {
+    await navigator.clipboard.writeText("fort404");
+    username.dataset.tooltip = copyMessages[Math.min(copyCount, copyMessages.length - 1)];
+    copyCount += 1;
+});
+
+username.addEventListener("pointerleave", () => {
+    username.dataset.tooltip = defaultUsernameTooltip;
+    copyCount = 0;
+});
+
 // Configure your Discord user ID here to enable the live presence widget.
 const DISCORD_USER_ID = "541605282942418964";
 const statusText = document.getElementById("status-text");
@@ -192,7 +270,7 @@ async function updateDiscordStatus() {
     if (!DISCORD_USER_ID || DISCORD_USER_ID === "YOUR_DISCORD_USER_ID") {
         statusText.textContent = fallbackStatus;
         setStatusVisual("online");
-        statusLink.href = "https://discord.com/";
+        statusLink.dataset.href = "https://discord.com/";
         return;
     }
 
@@ -213,14 +291,14 @@ async function updateDiscordStatus() {
         const presenceText = getPresenceText(data);
         statusText.textContent = presenceText;
         setStatusVisual(data.discord_status || "offline");
-        statusLink.href = `https://discord.com/users/${DISCORD_USER_ID}`;
+        statusLink.dataset.href = `https://discord.com/users/${DISCORD_USER_ID}`;
     } catch (error) {
         console.warn("Discord status unavailable:", error);
 
         const isUserMissing = String(error).includes("404") || String(error).includes("No status data returned");
         statusText.textContent = isUserMissing ? secondaryFallbackStatus : fallbackStatus;
         setStatusVisual("online");
-        statusLink.href = `https://discord.com/users/${DISCORD_USER_ID}`;
+        statusLink.dataset.href = `https://discord.com/users/${DISCORD_USER_ID}`;
     }
 }
 

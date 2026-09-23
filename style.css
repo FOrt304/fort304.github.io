@@ -202,6 +202,9 @@ body {
 }
 
 .music-toggle {
+    position: relative;
+    z-index: 2;
+
     display: grid;
     place-items: center;
 
@@ -219,6 +222,11 @@ body {
         0 0 16px rgba(80, 170, 255, 0.4);
     cursor: pointer;
     backdrop-filter: blur(12px);
+    transition: transform 0.12s ease;
+}
+
+.music-toggle:active {
+    transform: scale(0.92);
 }
 
 .music-icon {
@@ -245,17 +253,47 @@ body {
 }
 
 .music-volume {
+    position: absolute;
+    top: 0;
+    left: 21px;
+
     display: grid;
+    align-content: center;
     gap: 6px;
-    width: 0;
-    overflow: hidden;
+    width: max-content;
+    height: 42px;
+    padding-left: 29px;
     opacity: 0;
-    transition: width 0.2s ease, opacity 0.2s ease;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
 }
 
 .music-control:hover .music-volume,
 .music-control:focus-within .music-volume {
-    width: max-content;
+    opacity: 1;
+    visibility: visible;
+}
+
+.music-volume::before {
+    position: absolute;
+    inset: 0 -8px 0 0;
+    z-index: 0;
+
+    content: "";
+
+    background: rgba(8, 20, 45, 0.82);
+    border: 1px solid rgba(120, 180, 255, 0.4);
+    border-radius: 0 14px 14px 0;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.35),
+        0 0 16px rgba(80, 170, 255, 0.4);
+    backdrop-filter: blur(12px);
+    pointer-events: none;
+}
+
+.music-volume > * {
+    position: relative;
+    z-index: 1;
     opacity: 1;
 }
 
@@ -335,6 +373,121 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* =========================
+   Hover tooltips
+   ========================= */
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    z-index: 10;
+
+    width: max-content;
+    max-width: min(360px, calc(100vw - 32px));
+    padding: 8px 11px;
+
+    content: attr(data-tooltip);
+    color: #eaf3ff;
+    font-family: "Minecraft", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: center;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+
+    background: rgba(8, 20, 45, 0.94);
+    border: 1px solid rgba(120, 190, 255, 0.55);
+    border-radius: 10px;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 0 16px rgba(80, 170, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    transform: translate(-50%, 4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+[data-tooltip]::before {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 4px);
+    z-index: 10;
+
+    width: 7px;
+    height: 7px;
+
+    content: "";
+    pointer-events: none;
+
+    background: rgba(8, 20, 45, 0.94);
+    border-right: 1px solid rgba(120, 190, 255, 0.55);
+    border-bottom: 1px solid rgba(120, 190, 255, 0.55);
+    transform: translate(-50%, 4px) rotate(45deg);
+
+    opacity: 0;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::before,
+[data-tooltip]:focus-visible::after {
+    opacity: 1;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+    transform: translate(-50%, 0);
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:focus-visible::before {
+    transform: translate(-50%, 0) rotate(45deg);
+}
+
+.url-tooltip {
+    position: fixed;
+    left: 16px;
+    bottom: 16px;
+    z-index: 20;
+
+    max-width: min(520px, calc(100vw - 32px));
+    padding: 8px 11px;
+
+    color: #eaf3ff;
+    font-family: "Minecraft", sans-serif;
+    font-size: 12px;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+
+    background: rgba(8, 20, 45, 0.94);
+    border: 1px solid rgba(120, 190, 255, 0.55);
+    border-radius: 10px;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 0 16px rgba(80, 170, 255, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.url-tooltip.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .music-toggle:hover,
@@ -585,12 +738,16 @@ h1 span {
 .username {
     margin: 0;
     display: inline-block;
+    padding: 0;
 
     font-family: "Renogare", sans-serif;
     color: #8da6c9;
+    background: none;
+    border: 0;
     text-decoration: none;
 
     font-size: 15px;
+    cursor: pointer;
 }
 
 .pronouns {
@@ -600,6 +757,111 @@ h1 span {
     color: #8da6c9;
 
     font-size: 15px;
+}
+
+.quote {
+    position: relative;
+    width: fit-content;
+    margin: 24px auto 0;
+    padding: 0 2ch;
+
+    font-family: "Renogare", sans-serif;
+    color: rgba(203, 217, 239, 0.8);
+    line-height: 1.6;
+    text-align: center;
+    filter: drop-shadow(0 0 10px rgba(120, 200, 255, 0.16));
+}
+
+.quote::before,
+.quote::after {
+    position: absolute;
+
+    color: rgba(141, 166, 201, 0.78);
+    font-size: 30px;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(120, 200, 255, 0.7);
+    animation: quote-glint 2.8s ease-in-out infinite;
+}
+
+.quote::before {
+    content: '"';
+    top: -0.35em;
+    left: 0.55ch;
+}
+
+.quote::after {
+    content: '"';
+    right: 0;
+    bottom: -0.75em;
+}
+
+.quote p,
+.quote cite {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    text-align: right;
+    position: relative;
+    display: block;
+    opacity: 0.82;
+
+    background: linear-gradient(
+        90deg,
+        rgba(223, 238, 255, 0.85) 0%,
+        rgba(185, 228, 255, 0.8) 24%,
+        rgba(248, 251, 255, 0.88) 48%,
+        rgba(185, 228, 255, 0.8) 72%,
+        rgba(223, 238, 255, 0.85) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 12px rgba(128, 206, 255, 0.25);
+    animation: quote-sparkle 3.2s ease-in-out infinite alternate;
+}
+
+.quote cite {
+    display: block;
+    padding-left: 2ch;
+    font-style: normal;
+}
+
+@keyframes quote-sparkle {
+    0% {
+        background-position: 0% center;
+        filter: drop-shadow(0 0 0 rgba(128, 206, 255, 0.15));
+        opacity: 0.9;
+    }
+
+    50% {
+        background-position: 100% center;
+        filter: drop-shadow(0 0 8px rgba(128, 206, 255, 0.45));
+        opacity: 1;
+    }
+
+    100% {
+        background-position: 200% center;
+        filter: drop-shadow(0 0 4px rgba(128, 206, 255, 0.2));
+        opacity: 0.96;
+    }
+}
+
+@keyframes quote-glint {
+    0%,
+    100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+        text-shadow: 0 0 12px rgba(120, 200, 255, 0.85);
+    }
 }
 
 
